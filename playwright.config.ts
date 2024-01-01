@@ -76,7 +76,7 @@ export default defineConfig({
   // },
 
   /*
-  example to-do app
+  playwright to-do app
   ✅ displays two todo items by default (1076ms)
 
     ❌ can add new todo items (499ms)

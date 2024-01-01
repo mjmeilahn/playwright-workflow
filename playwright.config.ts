@@ -1,10 +1,10 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from '@playwright/test'
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// require('dotenv').config();
+// require('dotenv').config()
 
 /**
  * See https://playwright.dev/docs/test-configuration.
@@ -74,4 +74,23 @@ export default defineConfig({
   //   url: 'http://127.0.0.1:3000',
   //   reuseExistingServer: !process.env.CI,
   // },
-});
+
+  /*
+  example to-do app
+  ✅ displays two todo items by default (1076ms)
+
+    ❌ can add new todo items (499ms)
+    AssertionError: Timed out retrying after 4000ms: Not enough elements found. Found '3', expected '30'.
+
+  ✅ can check off an item as completed (159ms)
+  ✅ (with a checked task) can filter for uncompleted tasks (237ms)
+  ✅ (with a checked task) can filter for completed tasks (242ms)
+  ✅ (with a checked task) can delete all completed tasks (225ms)
+
+  ❌ 1 Scenario Failed
+  ✅ 5 Scenarios Passed
+  6 Scenarios = 7.4s
+
+  Test Automation Group has been notified of this incident and will attempt to duplicate all errors for verification. If you require screenshots we can supply them at your request. cc @john @meilahndev
+  */
+})

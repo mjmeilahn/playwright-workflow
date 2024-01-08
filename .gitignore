@@ -1,3 +1,7 @@
+# Specific To Local
+.DS_Store
+sendgrid.env
+
 # Logs
 logs
 *.log
@@ -130,5 +134,6 @@ dist
 .pnp.*
 /test-results/
 /playwright-report/
+/playwright-output/
 /blob-report/
 /playwright/.cache/

@@ -22,6 +22,6 @@ jobs:
     - uses: actions/upload-artifact@v3
       if: failure()
       with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+          name: playwright-output
+          path: playwright-output/ ## Folder used in playwright.config.js `outputDir`
+          retention-days: 30

@@ -14,5 +14,9 @@
   "devDependencies": {
     "@playwright/test": "^1.40.1",
     "@types/node": "^20.10.6"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.0",
+    "axios": "^1.6.3"
   }
 }

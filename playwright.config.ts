@@ -37,7 +37,7 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  outputDir: './playwright/output', // Screnshoot folder, can be updated.
+  outputDir: './playwright-output', // Screnshoot folder, can be updated.
 
   /* Configure projects for major browsers */
   projects: [
@@ -56,6 +56,11 @@ export default defineConfig({
       use: { ...devices['Desktop Safari'] },
     },
 
+    {
+      name: 'edge',
+      use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    },
+
     /* Test against mobile viewports. */
     // {
     //   name: 'Mobile Chrome',
@@ -67,10 +72,6 @@ export default defineConfig({
     // },
 
     /* Test against branded browsers. */
-    // {
-    //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    // },
     // {
     //   name: 'Google Chrome',
     //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },

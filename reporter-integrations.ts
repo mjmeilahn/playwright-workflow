@@ -32,6 +32,8 @@ class ReporterIntegrations implements Reporter {
     if (result.steps.filter(s => s.error !== undefined).length) {
       error = result.steps.find(s => s.error !== undefined)?.title
     }
+
+    // HIDE PLAYWRIGHT ERROR SYNTAX & MAKE IT EASY TO READ FOR HUMANS
     if (error !== undefined) {
       if (error.includes('.click')) {
         error = error.split('(')[1]
@@ -97,7 +99,7 @@ class ReporterIntegrations implements Reporter {
 
     message += '------------------------------------------\n'
 
-    const failMessage : string = `Test Automation Group has found ${failedTests + timedOutTests + interruptedTests} ${(failedTests + timedOutTests + interruptedTests === 1) ? 'error' : 'errors'} at runtime and will attempt to duplicate manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST.`
+    const failMessage : string = `Test Automation Group has found ${failedTests + timedOutTests + interruptedTests} ${(failedTests + timedOutTests + interruptedTests === 1) ? 'error' : 'errors'} at runtime and will attempt to re-test manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST.`
     const ccUsers : string = ' cc ' + '<@john>'
 
     message += (failedTests > 0 || interruptedTests > 0 || timedOutTests > 0) ? failMessage + ccUsers : ''
@@ -119,7 +121,7 @@ class ReporterIntegrations implements Reporter {
     ✅ can filter for completed tasks [Chrome - 2.3s]
     ✅ can delete all completed tasks [Chrome - 2.3s]
     -------------------------------------------
-    Test Automation Group has found 2 errors at runtime and will attempt to duplicate manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST. cc @john
+    Test Automation Group has found 2 errors at runtime and will attempt to re-test manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST. cc @john
     */
 
 

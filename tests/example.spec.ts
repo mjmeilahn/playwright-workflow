@@ -1,8 +1,10 @@
-import { test, expect, request } from '@playwright/test'
+
+import { test, expect } from '@playwright/test'
 
 /*
 FOR CUSTOM ERRORS USE: await expect(0, 'Test failed for reason X.').toBeTruthy()
 FOR CUSTOM PASSED USE: await expect(1).toBeTruthy()
+FOR API TESTING, USE ANOTHER REPO: https://playwright.dev/docs/api-testing
 */
 
 test('Has Title', async ({ page }) => {
@@ -89,8 +91,3 @@ test('Get Started Link Is Visible 5', async ({ page }) => {
   // Expects page to have a heading with the name of Installation.
   await expect(page.getByRole('heading', { name: 'Installation' }), 'Expected page heading "Installation" was not visible.').toBeVisible()
 })
-
-// test('GET Request returns a 200 HTTP Response', async ({ request }) => {
-//   const response = await request.get('http-address-here')
-//   expect(response.ok()).toBeTruthy()
-// })

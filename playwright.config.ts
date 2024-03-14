@@ -30,6 +30,7 @@ export default defineConfig({
   use: {
     // Take screenshot on failure
     screenshot: 'only-on-failure',
+
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://127.0.0.1:3000',
 
@@ -42,8 +43,8 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      name: 'chrome',
+      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
     },
 
     {
@@ -52,7 +53,7 @@ export default defineConfig({
     },
 
     {
-      name: 'webkit',
+      name: 'safari',
       use: { ...devices['Desktop Safari'] },
     },
 
@@ -71,10 +72,9 @@ export default defineConfig({
     //   use: { ...devices['iPhone 12'] },
     // },
 
-    /* Test against branded browsers. */
     // {
-    //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    //   name: 'chromium',
+    //   use: { ...devices['Desktop Chrome'] },
     // },
   ],
 

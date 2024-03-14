@@ -4,7 +4,8 @@ import { test, expect } from '@playwright/test'
 /*
 FOR CUSTOM ERRORS USE: await expect(0, 'Test failed for reason X.').toBeTruthy()
 FOR CUSTOM PASSED USE: await expect(1).toBeTruthy()
-FOR API TESTING, USE ANOTHER REPO: https://playwright.dev/docs/api-testing
+API TESTING DOCS: https://playwright.dev/docs/api-testing
+CREATE SEPARATE CONFIGS FOR API TESTING: https://www.youtube.com/watch?v=S12sspgH8es&list=PL-hNDoK1-od_HpjnFwFZnjKpIs_D-lEpn
 */
 
 test('Has Title', async ({ page }) => {

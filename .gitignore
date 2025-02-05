@@ -1,6 +1,7 @@
 # Specific To Local
 .DS_Store
 sendgrid.env
+slack.env
 
 # Logs
 logs

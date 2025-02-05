@@ -60,6 +60,20 @@ class ReporterIntegrations implements Reporter {
   // @ts-ignore
   async onExit(): void {
     let message : string = ''
+
+    this.tests.map(t => {
+      const browsers : number = this.tests.filter(f => f.title === t.title).length
+
+      if (this.scenarios.find(s => s.id === t.title) === undefined) {
+        this.scenarios.push({
+          id: t.title,
+          browsers,
+        })
+      }
+    })
+
+    message += '------------------------------------------\n'
+    message += `${this.tests.length} E2E Tests for ${this.scenarios.length} Parallel Scenarios = ${((this.milliseconds % 60000) / 1000).toFixed(1)}s\n`
     message += '------------------------------------------\n'
 
     const passedTests : number = this.tests.filter(t => t.status === 'Passed').length
@@ -74,18 +88,6 @@ class ReporterIntegrations implements Reporter {
     message += (skippedTests > 0) ? `⏭️ ${skippedTests} ${(skippedTests === 1) ? 'Test' : 'Tests'} Skipped\n` : ''
     message += (passedTests > 0) ? `✅ ${passedTests} ${(passedTests === 1) ? 'Test' : 'Tests'} Passed\n` : ''
 
-    this.tests.map(t => {
-      const browsers : number = this.tests.filter(f => f.title === t.title).length
-
-      if (this.scenarios.find(s => s.id === t.title) === undefined) {
-        this.scenarios.push({
-          id: t.title,
-          browsers,
-        })
-      }
-    })
-
-    message += `------------------------------------------\n${this.tests.length} Tests for ${this.scenarios.length} Parallel Scenarios = ${((this.milliseconds % 60000) / 1000).toFixed(1)}s\n`
     message += '------------------------------------------\n'
 
     this.tests.sort((a, b) => a.title.localeCompare(b.title))
@@ -99,7 +101,7 @@ class ReporterIntegrations implements Reporter {
 
     message += '------------------------------------------\n'
 
-    const failMessage : string = `Test Automation Group has found ${failedTests + timedOutTests + interruptedTests} ${(failedTests + timedOutTests + interruptedTests === 1) ? 'error' : 'errors'} at runtime and will attempt to re-test manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST.`
+    const failMessage : string = `We have found ${failedTests + timedOutTests + interruptedTests} ${(failedTests + timedOutTests + interruptedTests === 1) ? 'error' : 'errors'} at runtime and will attempt to re-test manually before getting any more team members involved. If you require screenshots we keep them for 30 days and can provide them at your request.`
     const ccUsers : string = ' cc ' + '<@john>'
 
     message += (failedTests > 0 || interruptedTests > 0 || timedOutTests > 0) ? failMessage + ccUsers : ''
@@ -107,11 +109,13 @@ class ReporterIntegrations implements Reporter {
     console.log(message)
 
     /*
+    EXAMPLE
+
+    -------------------------------------------
+    7 E2E Tests for X Parallel Scenarios = 7.4s
     -------------------------------------------
     ❌ 2 Tests Failed
     ✅ 5 Tests Passed
-    -------------------------------------------
-    7 Tests for X Parallel Scenarios = 7.4s
     -------------------------------------------
     ✅ displays two todo items by default [Chrome - 1s]
       ❌ can add new todo items [Safari - 5.0s]
@@ -121,20 +125,20 @@ class ReporterIntegrations implements Reporter {
     ✅ can filter for completed tasks [Chrome - 2.3s]
     ✅ can delete all completed tasks [Chrome - 2.3s]
     -------------------------------------------
-    Test Automation Group has found 2 errors at runtime and will attempt to re-test manually once our team is available. If you require screenshots we keep them for 30 days and can provide them at your request. Our business hours are Mon - Fri, 9am - 5pm PST. cc @john
+    We have found 2 errors at runtime and will attempt to re-test manually before getting more team members involved. If you require screenshots we keep them for 30 days and can provide them at your request. cc @john
     */
 
 
 
-    // IF CLIENT ONLY WANTS TO SEE INSTANT MESSAGES ON FAILURE
+    // IF YOU ONLY WANT TO SEE THESE MESSAGES ON FAILURE
     // if (failedTests > 0 || timedOutTests > 0 || interruptedTests > 0) {}
 
 
 
     /*
-    SEND RESULTS TO CLIENT SLACK CHANNEL (API)
+    SEND RESULTS TO SLACK CHANNEL (API)
     */
-    // const slackToken = 'xoxb-4748761055251-5057435052129-AnNpkrbKnB2DkSBxVmAZaQdk'
+    // const slackToken = 'XXXXXXXXXXXXXXX'
     // const channelID = 'dev'
 
     // // Message payload

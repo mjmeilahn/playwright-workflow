@@ -4,6 +4,25 @@ import type {
 } from '@playwright/test/reporter'
 const axios = require('axios')
 
+/*
+EXAMPLE
+-------------------------------------------
+7 E2E Tests for X Parallel Scenarios = 7.4s
+-------------------------------------------
+❌ 2 Tests Failed
+✅ 5 Tests Passed
+-------------------------------------------
+✅ displays two todo items by default [Chrome - 1s]
+  ❌ can add new todo items [Safari - 5.0s]
+  ❌ can add new todo items [Chrome - 5.0s]
+✅ can check off an item as completed [Chrome - 1.4s]
+✅ can filter for uncompleted tasks [Chrome - 2.3s]
+✅ can filter for completed tasks [Chrome - 2.3s]
+✅ can delete all completed tasks [Chrome - 2.3s]
+-------------------------------------------
+We have found 2 errors at runtime and will attempt to re-test manually before getting more team members involved. If you require screenshots we keep them for 30 days and can provide them at your request. cc @john
+*/
+
 
 class ReporterIntegrations implements Reporter {
   milliseconds : number = 0
@@ -107,28 +126,6 @@ class ReporterIntegrations implements Reporter {
     message += (failedTests > 0 || interruptedTests > 0 || timedOutTests > 0) ? failMessage + ccUsers : ''
 
     console.log(message)
-
-    /*
-    EXAMPLE
-
-    -------------------------------------------
-    7 E2E Tests for X Parallel Scenarios = 7.4s
-    -------------------------------------------
-    ❌ 2 Tests Failed
-    ✅ 5 Tests Passed
-    -------------------------------------------
-    ✅ displays two todo items by default [Chrome - 1s]
-      ❌ can add new todo items [Safari - 5.0s]
-      ❌ can add new todo items [Chrome - 5.0s]
-    ✅ can check off an item as completed [Chrome - 1.4s]
-    ✅ can filter for uncompleted tasks [Chrome - 2.3s]
-    ✅ can filter for completed tasks [Chrome - 2.3s]
-    ✅ can delete all completed tasks [Chrome - 2.3s]
-    -------------------------------------------
-    We have found 2 errors at runtime and will attempt to re-test manually before getting more team members involved. If you require screenshots we keep them for 30 days and can provide them at your request. cc @john
-    */
-
-
 
     // IF YOU ONLY WANT TO SEE THESE MESSAGES ON FAILURE
     // if (failedTests > 0 || timedOutTests > 0 || interruptedTests > 0) {}
